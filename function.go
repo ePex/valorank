@@ -10,7 +10,10 @@ import (
 
 // Valorank gets the rank sentence and writes it to the body
 func Valorank(w http.ResponseWriter, r *http.Request) {
-	valorank, err := rank.GetRank()
+	region := r.URL.Query().Get("region")
+	name := r.URL.Query().Get("name")
+	tagline := r.URL.Query().Get("tagline")
+	valorank, err := rank.GetRank(region, name, tagline)
 	if err != nil {
 		log.Printf("Valorank: %v", err)
 		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)

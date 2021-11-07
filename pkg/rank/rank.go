@@ -25,8 +25,8 @@ type Rank struct {
 
 // GetRank calls the api https://api.henrikdev.xyz/valorant/v1/mmr/eu/devpex/EUW and transforms
 // the fields into a human readable sentence.
-func GetRank() (Rank, error) {
-	resp, err := http.Get("https://api.henrikdev.xyz/valorant/v1/mmr/eu/devpex/EUW")
+func GetRank(region string, name string, tagline string) (Rank, error) {
+	resp, err := http.Get("https://api.henrikdev.xyz/valorant/v1/mmr/" + region + "/" + name + "/" + tagline)
 	if err != nil {
 		log.Printf("http.NewRequest: %v", err)
 		return Rank{}, err
@@ -43,7 +43,7 @@ func GetRank() (Rank, error) {
 	json.Unmarshal(data, &response)
 
 	rank := Rank{
-		Sentence: "devpex ist momentan " + response.Data.CurrentTierPatched + " mit " + strconv.Itoa(response.Data.RankingInTier) + " punkten. Im letzten Spiel hat er " + strconv.Itoa(response.Data.MmrChangeToLastGame) + " Punkte gemacht.",
+		Sentence: name + " ist momentan " + response.Data.CurrentTierPatched + " mit " + strconv.Itoa(response.Data.RankingInTier) + " punkten. " + name + " hat im letzten Spiel " + strconv.Itoa(response.Data.MmrChangeToLastGame) + " Punkte gemacht.",
 	}
 	return rank, nil
 }

@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	valorank, err := rank.GetRank()
+	valorank, err := rank.GetRank("eu", "mimimaly_", "6969")
 	if err != nil {
 		log.Printf("Valorank: %v", err)
 		return
