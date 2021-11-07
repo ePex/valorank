@@ -1,10 +1,10 @@
 package main
 
 import (
+	"devpex.com/valorank/pkg/rank"
 	"fmt"
 	"html"
 	"log"
-	"valorank/pkg/rank"
 )
 
 func main() {

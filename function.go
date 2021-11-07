@@ -1,11 +1,11 @@
 package valorank
 
 import (
+	"devpex.com/valorank/pkg/rank"
 	"fmt"
 	"html"
 	"log"
 	"net/http"
-	"valorank/pkg/rank"
 )
 
 // Valorank gets the rank sentence and writes it to the body
